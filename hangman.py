@@ -3,62 +3,62 @@
 import random
 
 HANGMANPICS = ['''
-
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-*========*''', '''
-
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-*========*''', '''
-
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-*========*''', '''
-
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-*========*''', '''
-
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-*========*''', '''
-
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-*========*''', '''
-
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-*========*''']
+    
+    +---+
+    |   |
+    |
+    |
+    |
+    |
+    *========*''', '''
+        
+        +---+
+        |   |
+        O   |
+        |
+        |
+        |
+        *========*''', '''
+            
+            +---+
+            |   |
+            O   |
+            |   |
+            |
+            |
+            *========*''', '''
+                
+                +---+
+                |   |
+                O   |
+                /|   |
+                |
+                |
+                *========*''', '''
+                    
+                    +---+
+                    |   |
+                    O   |
+                    /|\  |
+                    |
+                    |
+                    *========*''', '''
+                        
+                        +---+
+                        |   |
+                        O   |
+                        /|\  |
+                        /    |
+                        |
+                        *========*''', '''
+                            
+                            +---+
+                            |   |
+                            O   |
+                            /|\  |
+                            / \  |
+                            |
+                            *========*''']
 
 def calcPoint(record):
     record += 10
@@ -70,7 +70,7 @@ def readWordList():
 
 def readRecord():
     file = open('record.txt', 'r')
-
+    
     list=file.readline().split()
     if(len(list) == 0):
         return ['none', 0]
@@ -92,21 +92,21 @@ def getRandomWord(wordList):
 def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
     print(HANGMANPICS[len(missedLetters)])
     print()
-
+    
     print('Missed letters:', end=' ')
     for letter in missedLetters:
         print(letter, end=' ')
     print()
 
-    blanks = ''
+blanks = ''
     for i in range(len(secretWord)): # replace blanks with correctly guessed letters
         if secretWord[i] in correctLetters:
             blanks += secretWord[i]
         else:
             blanks += '_'
 
-    for letter in blanks: # show the secret word with spaces in between each letter
-        print(letter, end=' ')
+for letter in blanks: # show the secret word with spaces in between each letter
+    print(letter, end=' ')
     print()
 
 def getGuess(alreadyGuessed):
@@ -143,34 +143,34 @@ def checkWrongAnswer(missedLetters, secretWord):
     if len(missedLetters) == len(HANGMANPICS) - 1:
         return True
     return False
-            
+
 def main():
     """Main application entry point."""
-
+    
     print('H A N G M A N - DYSM')
-
+    
     name = readRecord()[0]
     highRecord = int(readRecord()[1])
-
+    
     print('Highest Record is:', name + " - " + str(highRecord))
-
+    
     record = 0
     missedLetters = ''
     correctLetters = ''
     gameSucceeded = False
     gameFailed = False
     secretWord = getRandomWord(words)
-
+    
     while True:
         displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
-
+        
         if gameSucceeded or gameFailed:
             if gameSucceeded:
                 print('Yes! The secret word is "' + secretWord + '"! You have won!')
                 record = calcPoint(record)
             else:
                 print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
-
+            
             # Ask the player if they want to play again (but only if the game is done).
             print("Now score : ", record)
             if playAgain():
@@ -184,15 +184,15 @@ def main():
                 if(highRecord < record):
                     writeRecord(input("NEW RECORD!!\nWhat's your name?: "), record)
                 break
-
+        
         # Let the player type in a letter.
         guess = getGuess(missedLetters + correctLetters)
         if guess in secretWord:
             correctLetters = correctLetters + guess
             gameSucceeded = checkCorrectAnswer(correctLetters, secretWord)
-        else:
-            missedLetters = missedLetters + guess
-            gameFailed = checkWrongAnswer(missedLetters, secretWord)
+else:
+    missedLetters = missedLetters + guess
+        gameFailed = checkWrongAnswer(missedLetters, secretWord)
 
 
 if __name__ == "__main__":
