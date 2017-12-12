@@ -24,5 +24,9 @@ class HangmanTestCase(unittest.TestCase):
         answer = hangman.checkCorrectAnswer("", " ")
         self.assertFalse(answer)		
 		
+    def test_checkCorrectAnswer(self):
+        answer = hangman.checkCorrectAnswer("ZEBRA", "zebra")
+        self.assertTure(answer)	
+		
 if __name__ == "__main__":
     unittest.main()
