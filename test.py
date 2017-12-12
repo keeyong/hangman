@@ -17,16 +17,17 @@ class HangmanTestCase(unittest.TestCase):
         self.assertTrue(answer)
 		
     def test_checkCorrectAnswer(self):
-        answer = hangman.checkCorrectAnswer("bazn ", "baboon")
+        answer = hangman.checkCorrectAnswer("bazn", "baboon")
         self.assertFalse(answer)	
    
     def test_checkCorrectAnswer(self):
         answer = hangman.checkCorrectAnswer("", " ")
         self.assertFalse(answer)		
-		
-    def test_checkCorrectAnswer(self):
+    
+    def test_checkWrongAnswer(self):
         answer = hangman.checkCorrectAnswer("ZEBRA", "zebra")
-        self.assertTure(answer)	
+        self.assertFalse(answer)		
+
 		
 if __name__ == "__main__":
     unittest.main()
