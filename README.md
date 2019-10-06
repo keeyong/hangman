@@ -2,12 +2,14 @@
 A lecture sample code from http://inventwithpython.com/chapter9.html
 
 ## hangman_web.py
+
 - Requires MySQL
+
 - If you want to run this in EC2 Ubuntu server, here is what you need to do:
 
 ```
 sudo apt update
-git clone https://github.com/keeyong/state_capital.git
+git clone https://github.com/keeyong/hangman.git
 
 # install mysql and flask modules
 sudo apt install python3-pip
@@ -32,3 +34,10 @@ UPDATE mysql.user SET plugin='mysql_native_password' WHERE User='root';
 UPDATE mysql.user set authentication_string=password('YOUR_PASSWORD') where user='root';
 FLUSH PRIVILEGES;
 ```
+
+- Finally to run the code (note that Flask app is using port 80 and the port needs to be open). Change directory to the hangman folder 
+```
+sudo python3 hangman_web.py
+```
+
+- Access the server (either localhost or a server)
