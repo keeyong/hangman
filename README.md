@@ -35,6 +35,16 @@ UPDATE mysql.user set authentication_string=password('YOUR_PASSWORD') where user
 FLUSH PRIVILEGES;
 ```
 
+- Now using the ID/PW you created earlier, log in to the shell again and create a database ("test") and a word table ("words")
+```
+/usr/bin/mysql -u root -p
+mysql> CREATE DATABASE test;
+mysql> CREATE TABLE words ( word varchar(64) );
+mysql> INSERT INTO test.words value ("iphone");
+mysql> INSERT INTO test.words value ("cookie");
+mysql> INSERT INTO test.words value ("airplane");
+```
+
 - Finally to run the code (note that Flask app is using port 80 and the port needs to be open). Change directory to the hangman folder 
 ```
 sudo python3 hangman_web.py
