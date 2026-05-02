@@ -1,1 +1,1 @@
-print("Hello Hangman - 2026년")
+print("Hello Hangman - 2026년 5월")
